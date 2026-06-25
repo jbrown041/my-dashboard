@@ -1,23 +1,31 @@
 # Active Context
 
 ## Current Status
-**Planning complete. No code exists yet. Ready to begin Sprint 0.**
+**Sprint 0 complete. Ready to begin Sprint 1 — Application Shell & Navigation.**
 
-## What Was Just Completed
-- PRD v1.0 finalized (all functional requirements, user stories, acceptance criteria)
-- Design Document v1.0 finalized (full design system: typography, color, spacing, components, page layouts)
-- Sprint Plan v1.0 finalized (6 sprints, 306 total story points, full task breakdown)
-- Memory bank populated from planning docs
-- Workspace structure consolidated (`memory-bank/` and `.github/` moved into `my-dashboard/`)
+## What Was Just Completed (Sprint 0)
+- Vue 3 + Vite project scaffolded with Vue Router, Pinia, ESLint, Prettier
+- All dependencies installed: `@lucide/vue`, `vue-echarts`, `echarts`, `d3`, `tailwindcss@3`
+- Folder structure established: `/components`, `/pages`, `/stores`, `/composables`, `/assets`, `/data`, `/services`
+- `tailwind.config.js` — all design tokens: colors, typography, spacing, radius, shadows, layout constants
+- `src/assets/main.css` — Tailwind directives, Google Fonts import, CSS custom property tokens (light + dark), base resets, color transitions, prefers-reduced-motion rule
+- 4 Pinia stores: `useAuthStore`, `useTimeRangeStore`, `useThemeStore`, `useNotificationStore`
+- 10 mock JSON data files in `/src/data/`
+- Mock service layer at `/src/services/api.js` (async, mirrors real API shape)
+- 5 placeholder page components in `/src/pages/`
+- Vue Router configured with all 5 named routes + `/` redirect to `/dashboard`
+- App.vue cleaned up to bare `<RouterView />`
+- Production build passes cleanly (`npm run build`)
 
 ## Immediate Next Step
-**Begin Sprint 0 — INFRA-01: Project Scaffolding**
+**Begin Sprint 1 — SHELL-01: Application Layout**
 
-Sprint 0 tasks in order:
-1. `INFRA-01` — Initialize Vue 3 + Vite project, install all dependencies, configure folder structure, ESLint/Prettier
-2. `DS-01` — Define all design tokens in `tailwind.config.js` and global CSS
-3. `DS-02` — Create all mock JSON data files and mock service layer
-4. `DS-03` — Create all four Pinia stores
+Sprint 1 tasks in order:
+1. `SHELL-01` — AppLayout.vue (fixed top bar + fixed side nav + scrollable main content slot)
+2. `SHELL-02` — AppTopBar.vue
+3. `SHELL-03` — AppSideNav.vue with routing + active state
+4. `SHELL-04` — ThemeToggle.vue wired to useThemeStore
+5. `SHELL-05` — PageHeader.vue + page transitions
 
 ## Active Decisions / Things to Keep in Mind
 - **No real API yet** — all data comes from mock JSON files in `/data/` via a mock service layer in `/services/`

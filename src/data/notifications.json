@@ -1,0 +1,92 @@
+[
+  {
+    "id": "notif-1",
+    "type": "exception_spike",
+    "title": "Exception count up 14%",
+    "description": "Open exceptions have increased by 14% in the last 7 days. Review the Exceptions page.",
+    "route": "/exceptions",
+    "timestamp": "2026-06-25T11:32:00",
+    "read": false
+  },
+  {
+    "id": "notif-2",
+    "type": "carrier_benchmark",
+    "title": "MountainMove below benchmark",
+    "description": "MountainMove on-time rate has dropped to 78.6%, below the 80% benchmark threshold.",
+    "route": "/carriers",
+    "timestamp": "2026-06-25T09:15:00",
+    "read": false
+  },
+  {
+    "id": "notif-3",
+    "type": "carrier_benchmark",
+    "title": "MidwestExpress below benchmark",
+    "description": "MidwestExpress on-time rate is 82.1%, approaching the 80% benchmark threshold.",
+    "route": "/carriers",
+    "timestamp": "2026-06-24T16:44:00",
+    "read": false
+  },
+  {
+    "id": "notif-4",
+    "type": "ontime_rate",
+    "title": "On-time rate declined",
+    "description": "Overall on-time delivery rate dropped from 89.7% to 88.3% this period.",
+    "route": "/dashboard",
+    "timestamp": "2026-06-24T08:00:00",
+    "read": true
+  },
+  {
+    "id": "notif-5",
+    "type": "exception_spike",
+    "title": "Midwest exceptions up 22%",
+    "description": "The Midwest region has seen a 22% rise in open exceptions over the last 30 days.",
+    "route": "/exceptions",
+    "timestamp": "2026-06-23T14:20:00",
+    "read": true
+  },
+  {
+    "id": "notif-6",
+    "type": "carrier_benchmark",
+    "title": "MountainMove performance declining",
+    "description": "MountainMove has trended down for 3 consecutive periods.",
+    "route": "/carriers",
+    "timestamp": "2026-06-22T11:05:00",
+    "read": true
+  },
+  {
+    "id": "notif-7",
+    "type": "ontime_rate",
+    "title": "On-time rate below 85% in Southeast",
+    "description": "Southeast region on-time rate has fallen to 82.4% this week.",
+    "route": "/regional",
+    "timestamp": "2026-06-21T09:30:00",
+    "read": true
+  },
+  {
+    "id": "notif-8",
+    "type": "exception_spike",
+    "title": "Damaged goods exceptions up 18%",
+    "description": "Damaged goods exceptions increased by 18% compared to the prior 30-day period.",
+    "route": "/exceptions",
+    "timestamp": "2026-06-20T15:10:00",
+    "read": true
+  },
+  {
+    "id": "notif-9",
+    "type": "carrier_benchmark",
+    "title": "EastCoastEx trending down",
+    "description": "EastCoastEx on-time rate has declined for 2 consecutive periods. Currently at 88.4%.",
+    "route": "/carriers",
+    "timestamp": "2026-06-19T10:00:00",
+    "read": true
+  },
+  {
+    "id": "notif-10",
+    "type": "ontime_rate",
+    "title": "On-time rate recovered in West",
+    "description": "West region on-time rate improved from 90.1% to 92.1% this period.",
+    "route": "/regional",
+    "timestamp": "2026-06-18T08:45:00",
+    "read": true
+  }
+]

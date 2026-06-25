@@ -1,0 +1,62 @@
+[
+  {
+    "id": "carrier-1",
+    "name": "SwiftFreight",
+    "onTimeRate": 94.2,
+    "totalShipments": 812,
+    "incidentCount": 14,
+    "avgDeliveryDays": 2.1,
+    "trend": "up",
+    "belowBenchmark": false
+  },
+  {
+    "id": "carrier-2",
+    "name": "PacificHaul",
+    "onTimeRate": 91.7,
+    "totalShipments": 634,
+    "incidentCount": 22,
+    "avgDeliveryDays": 2.8,
+    "trend": "up",
+    "belowBenchmark": false
+  },
+  {
+    "id": "carrier-3",
+    "name": "EastCoastEx",
+    "onTimeRate": 88.4,
+    "totalShipments": 1104,
+    "incidentCount": 41,
+    "avgDeliveryDays": 2.4,
+    "trend": "down",
+    "belowBenchmark": false
+  },
+  {
+    "id": "carrier-4",
+    "name": "MidwestExpress",
+    "onTimeRate": 82.1,
+    "totalShipments": 748,
+    "incidentCount": 58,
+    "avgDeliveryDays": 3.2,
+    "trend": "down",
+    "belowBenchmark": true
+  },
+  {
+    "id": "carrier-5",
+    "name": "SunBelt Cargo",
+    "onTimeRate": 90.3,
+    "totalShipments": 521,
+    "incidentCount": 29,
+    "avgDeliveryDays": 2.6,
+    "trend": "up",
+    "belowBenchmark": false
+  },
+  {
+    "id": "carrier-6",
+    "name": "MountainMove",
+    "onTimeRate": 78.6,
+    "totalShipments": 399,
+    "incidentCount": 72,
+    "avgDeliveryDays": 3.8,
+    "trend": "down",
+    "belowBenchmark": true
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "today": {
+    "Northeast":  28, "Southeast": 22, "Midwest": 31, "Southwest": 18, "West": 43
+  },
+  "last_7_days": {
+    "Northeast": 194, "Southeast": 168, "Midwest": 215, "Southwest": 142, "West": 264
+  },
+  "last_30_days": {
+    "Northeast": 847, "Southeast": 712, "Midwest": 934, "Southwest": 601, "West": 1124
+  },
+  "last_year": {
+    "Northeast": 10240, "Southeast": 8640, "Midwest": 11320, "Southwest": 7280, "West": 13960
+  }
+}

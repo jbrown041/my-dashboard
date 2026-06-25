@@ -1,0 +1,6 @@
+{
+  "today":        { "inTransit": 68,   "delivered": 58,   "delayed": 11,  "exception": 5 },
+  "last_7_days":  { "inTransit": 312,  "delivered": 581,  "delayed": 56,  "exception": 34 },
+  "last_30_days": { "inTransit": 890,  "delivered": 2980, "delayed": 221, "exception": 127 },
+  "last_year":    { "inTransit": 2100, "delivered": 46310,"delayed": 2548,"exception": 1482 }
+}

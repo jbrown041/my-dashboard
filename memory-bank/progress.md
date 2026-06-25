@@ -1,21 +1,20 @@
 # Progress
 
-## Overall Status: Pre-Development — Sprint 0 Not Started
+## Overall Status: Sprint 0 Complete — Sprint 1 Starting
 
 ## ✅ Done
-- [x] PRD v1.0 — problem statement, objectives, user stories, functional requirements, non-functional requirements, acceptance criteria, dependencies
-- [x] Design Document v1.0 — typography, color system, spacing, elevation, iconography, motion, layout/nav, all component specs, all page-level layouts
-- [x] Sprint Plan v1.0 — 6 sprints, 306 points, full task breakdown with type + estimates + AC references
-- [x] Workspace consolidated — `memory-bank/` and `.github/` in `my-dashboard/`
-- [x] Memory bank populated
+- [x] PRD v1.0, Design Document v1.0, Sprint Plan v1.0
+- [x] Workspace consolidated, memory bank populated
+- [x] **Sprint 0 — Foundation (44 pts) — COMPLETE**
+  - [x] INFRA-01: Vue 3 + Vite, Vue Router, Pinia, ESLint, Prettier, all dependencies
+  - [x] DS-01: `tailwind.config.js` design tokens + global CSS + CSS custom properties + reduced-motion rule
+  - [x] DS-02: 10 mock JSON files + async mock service layer (`/src/services/api.js`)
+  - [x] DS-03: useAuthStore, useTimeRangeStore, useThemeStore, useNotificationStore
+  - [x] 5 placeholder page components + Vue Router configured + App.vue cleaned
 
 ## 🔲 Not Started
 
-### Sprint 0 — Foundation (44 pts)
-- [ ] INFRA-01: Vue 3 + Vite project init, all dependencies installed, folder structure, ESLint/Prettier
-- [ ] DS-01: All design tokens in `tailwind.config.js` + CSS custom properties + global CSS
-- [ ] DS-02: All mock JSON data + mock service layer (`/services/`)
-- [ ] DS-03: Four Pinia stores (useAuthStore, useTimeRangeStore, useThemeStore, useNotificationStore)
+### Sprint 1 — App Shell (38 pts)
 
 ### Sprint 1 — App Shell (38 pts)
 - [ ] SHELL-01: AppLayout.vue (top bar + side nav + main content slot)

@@ -1,0 +1,71 @@
+/* Google Fonts — Open Sans 400, 600, 700 (Design Doc §3.1) */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Light / Dark Mode CSS Tokens (Design Doc §3.2.4) ─────────────── */
+:root {
+  --color-bg:             #f5f7fa;
+  --color-surface:        #ffffff;
+  --color-text-primary:   #011e41;
+  --color-text-secondary: #6b7280;
+  --color-border:         #e2e8f0;
+  --color-nav-bg:         #011e41;
+  --color-nav-text:       #ffffff;
+  --color-nav-active:     #0095a9;
+  --color-nav-hover:      #006072;
+}
+
+.dark {
+  --color-bg:             #0d1b2e;
+  --color-surface:        #112240;
+  --color-text-primary:   #e8edf5;
+  --color-text-secondary: #8899aa;
+  --color-border:         #1e3a5f;
+  --color-nav-bg:         #060f1e;
+  --color-nav-text:       #c8d8e8;
+  --color-nav-active:     #0095a9;
+  --color-nav-hover:      #0d2d4a;
+}
+
+/* ─── Base Resets ──────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  min-width: 1280px;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+/* ─── Transition: light/dark mode color switch (Design Doc §3.7) ─── */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
+}
+
+/* ─── Reduced Motion (Design Doc §3.7) ────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+

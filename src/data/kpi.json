@@ -1,0 +1,26 @@
+{
+  "today": {
+    "totalShipments":    { "value": 142,    "delta": 8,    "deltaDirection": "up" },
+    "onTimeRate":        { "value": 91.4,   "delta": 1.2,  "deltaDirection": "up" },
+    "activeCarriers":    { "value": 18,     "delta": 0,    "deltaDirection": "neutral" },
+    "openExceptions":    { "value": 7,      "delta": -2,   "deltaDirection": "down" }
+  },
+  "last_7_days": {
+    "totalShipments":    { "value": 983,    "delta": 4.7,  "deltaDirection": "up" },
+    "onTimeRate":        { "value": 89.6,   "delta": -0.8, "deltaDirection": "down" },
+    "activeCarriers":    { "value": 18,     "delta": 0,    "deltaDirection": "neutral" },
+    "openExceptions":    { "value": 34,     "delta": 12.3, "deltaDirection": "up" }
+  },
+  "last_30_days": {
+    "totalShipments":    { "value": 4218,   "delta": 6.2,  "deltaDirection": "up" },
+    "onTimeRate":        { "value": 88.3,   "delta": -1.4, "deltaDirection": "down" },
+    "activeCarriers":    { "value": 18,     "delta": 2,    "deltaDirection": "up" },
+    "openExceptions":    { "value": 127,    "delta": 18.7, "deltaDirection": "up" }
+  },
+  "last_year": {
+    "totalShipments":    { "value": 51440,  "delta": 11.3, "deltaDirection": "up" },
+    "onTimeRate":        { "value": 90.1,   "delta": 2.1,  "deltaDirection": "up" },
+    "activeCarriers":    { "value": 18,     "delta": 3,    "deltaDirection": "up" },
+    "openExceptions":    { "value": 1482,   "delta": -5.2, "deltaDirection": "down" }
+  }
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "id": "Northeast",
+    "shipmentVolume": 847,
+    "onTimeRate": 91.2,
+    "topCarrier": "EastCoastEx",
+    "openExceptions": 28,
+    "exceptionsByType": { "delayed": 14, "damaged": 5, "missingDocs": 6, "other": 3 },
+    "performanceScore": 88
+  },
+  {
+    "id": "Southeast",
+    "shipmentVolume": 712,
+    "onTimeRate": 89.4,
+    "topCarrier": "EastCoastEx",
+    "openExceptions": 34,
+    "exceptionsByType": { "delayed": 18, "damaged": 7, "missingDocs": 5, "other": 4 },
+    "performanceScore": 82
+  },
+  {
+    "id": "Midwest",
+    "shipmentVolume": 934,
+    "onTimeRate": 83.7,
+    "topCarrier": "MidwestExpress",
+    "openExceptions": 41,
+    "exceptionsByType": { "delayed": 22, "damaged": 8, "missingDocs": 7, "other": 4 },
+    "performanceScore": 74
+  },
+  {
+    "id": "Southwest",
+    "shipmentVolume": 601,
+    "onTimeRate": 90.8,
+    "topCarrier": "SunBelt Cargo",
+    "openExceptions": 19,
+    "exceptionsByType": { "delayed": 9, "damaged": 4, "missingDocs": 4, "other": 2 },
+    "performanceScore": 86
+  },
+  {
+    "id": "West",
+    "shipmentVolume": 1124,
+    "onTimeRate": 92.1,
+    "topCarrier": "PacificHaul",
+    "openExceptions": 5,
+    "exceptionsByType": { "delayed": 2, "damaged": 1, "missingDocs": 1, "other": 1 },
+    "performanceScore": 92
+  }
+]
