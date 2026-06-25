@@ -95,9 +95,9 @@ const option = computed(() => {
 </script>
 
 <template>
-  <div class="chart-card">
+  <div class="chart-card" role="region" aria-labelledby="chart-carrier-comparison">
     <div class="chart-card__header">
-      <h3 class="chart-card__title">Carrier Comparison</h3>
+      <h3 id="chart-carrier-comparison" class="chart-card__title">Carrier Comparison</h3>
       <p class="chart-card__subtitle">On-time rate and incidents per carrier</p>
     </div>
     <div v-if="loading" class="chart-skeleton" aria-busy="true" />

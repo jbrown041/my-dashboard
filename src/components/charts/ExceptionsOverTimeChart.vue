@@ -97,9 +97,9 @@ const option = computed(() => {
 </script>
 
 <template>
-  <div class="chart-card">
+  <div class="chart-card" role="region" aria-labelledby="chart-exceptions-time">
     <div class="chart-card__header">
-      <h3 class="chart-card__title">Exceptions Over Time</h3>
+      <h3 id="chart-exceptions-time" class="chart-card__title">Exceptions Over Time</h3>
       <p class="chart-card__subtitle">Daily exception volume trend</p>
     </div>
     <div v-if="loading" class="chart-skeleton" aria-busy="true" />

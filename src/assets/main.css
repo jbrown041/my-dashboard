@@ -69,3 +69,18 @@ body {
   }
 }
 
+/* ─── Focus Rings (QA-03-T04, WCAG 2.4.7) ─────────────────────────── */
+/* Remove browser default; apply consistent visible ring on keyboard nav */
+:focus { outline: none; }
+
+:focus-visible {
+  outline: 2px solid #0095a9;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Nav links need slightly larger offset so the ring sits outside the border */
+nav a:focus-visible {
+  outline-offset: 3px;
+}
+

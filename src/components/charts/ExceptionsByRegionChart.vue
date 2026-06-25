@@ -75,9 +75,9 @@ const option = computed(() => {
 </script>
 
 <template>
-  <div class="chart-card">
+  <div class="chart-card" role="region" aria-labelledby="chart-exceptions-region">
     <div class="chart-card__header">
-      <h3 class="chart-card__title">Exceptions by Region</h3>
+      <h3 id="chart-exceptions-region" class="chart-card__title">Exceptions by Region</h3>
       <p class="chart-card__subtitle">Open exceptions sorted by count</p>
     </div>
     <div v-if="loading" class="chart-skeleton" aria-busy="true" />

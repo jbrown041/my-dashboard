@@ -23,7 +23,7 @@ const navItems = [
 
 <template>
   <!-- SHELL-03-T01: AppSideNav with 5 nav items (Design Doc §4.3) -->
-  <nav class="side-nav">
+  <nav class="side-nav" aria-label="Main navigation">
     <!-- Logo area aligns with top bar height -->
     <div class="nav-logo-area">
       <span class="nav-logo-text">FF Logistics</span>
@@ -36,6 +36,8 @@ const navItems = [
           :to="item.to"
           class="nav-item"
           :class="{ 'nav-item--active': route.path === item.to }"
+          :aria-label="item.label"
+          :title="item.label"
         >
           <!-- SHELL-03-T02: Active state detection via useRoute -->
           <component :is="item.icon" :size="20" class="nav-item__icon" />
@@ -58,6 +60,29 @@ const navItems = [
   display: flex;
   flex-direction: column;
   z-index: 40;
+  /* QA-04-T07: Smooth width transition when collapsing */
+  transition: width 200ms ease;
+}
+
+/* QA-04-T07: Collapse to icon-only at 1024–1279px */
+@media (max-width: 1279px) {
+  .side-nav {
+    width: 60px;
+  }
+  .nav-logo-text {
+    display: none;
+  }
+  .nav-item__label {
+    display: none;
+  }
+  .nav-item {
+    padding: 10px 0;
+    justify-content: center;
+  }
+  .nav-logo-area {
+    justify-content: center;
+    padding: 0;
+  }
 }
 
 .nav-logo-area {

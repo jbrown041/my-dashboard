@@ -32,7 +32,8 @@ onMounted(async () => {
       <span
         v-if="store.unreadCount > 0"
         class="notif-bell__badge"
-        aria-label="`${store.unreadCount} unread notifications`"
+        :aria-label="`${store.unreadCount} unread notifications`"
+        aria-live="polite"
       >
         {{ store.unreadCount > 9 ? '9+' : store.unreadCount }}
       </span>

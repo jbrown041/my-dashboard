@@ -93,9 +93,9 @@ const option = computed(() => {
 </script>
 
 <template>
-  <div class="chart-card">
+  <div class="chart-card" role="region" aria-labelledby="chart-regional-comparison">
     <div class="chart-card__header">
-      <h3 class="chart-card__title">Regional Comparison</h3>
+      <h3 id="chart-regional-comparison" class="chart-card__title">Regional Comparison</h3>
       <p class="chart-card__subtitle">On-time rate and volume by region</p>
     </div>
     <div v-if="loading" class="chart-skeleton" aria-busy="true" />

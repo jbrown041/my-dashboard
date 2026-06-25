@@ -101,9 +101,9 @@ const option = computed(() => {
 </script>
 
 <template>
-  <div class="chart-card">
+  <div class="chart-card" role="region" aria-labelledby="chart-shipment-volume">
     <div class="chart-card__header">
-      <h3 class="chart-card__title">Shipment Volume</h3>
+      <h3 id="chart-shipment-volume" class="chart-card__title">Shipment Volume</h3>
       <p class="chart-card__subtitle">Current vs. prior period</p>
     </div>
 

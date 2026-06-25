@@ -96,9 +96,9 @@ const option = computed(() => {
 </script>
 
 <template>
-  <div class="chart-card">
+  <div class="chart-card" role="region" aria-labelledby="chart-shipments-status">
     <div class="chart-card__header">
-      <h3 class="chart-card__title">Shipments by Status</h3>
+      <h3 id="chart-shipments-status" class="chart-card__title">Shipments by Status</h3>
       <p class="chart-card__subtitle">Distribution across all status categories</p>
     </div>
     <div v-if="loading" class="chart-skeleton" aria-busy="true" />

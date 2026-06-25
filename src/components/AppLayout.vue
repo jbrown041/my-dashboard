@@ -37,6 +37,15 @@ import AppSideNav from './AppSideNav.vue'
   overflow-y: auto;
   /* SHELL-01-T04: 32px padding all sides */
   padding: 32px;
+  /* QA-04-T07: Smooth margin transition matching nav collapse */
+  transition: margin-left 200ms ease;
+}
+
+/* QA-04-T07: Reduced margin when nav collapses to icon-only */
+@media (max-width: 1279px) {
+  .main-content {
+    margin-left: 60px;
+  }
 }
 
 /* SHELL-01-T03: Max 1440px, centered */
