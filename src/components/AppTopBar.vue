@@ -1,13 +1,11 @@
 <script setup>
 // SHELL-02 — Top Bar (Design Doc §4.2)
-import { Bell } from 'lucide-vue-next'
 import ThemeToggle from './ThemeToggle.vue'
+import NotificationBell from './NotificationBell.vue'
 import { useAuthStore } from '../stores/auth'
-import { useNotificationStore } from '../stores/notifications'
 
 // SHELL-02-T03: User data from useAuthStore (FR-G02)
 const authStore = useAuthStore()
-const notificationStore = useNotificationStore()
 </script>
 
 <template>
@@ -36,18 +34,8 @@ const notificationStore = useNotificationStore()
 
     <!-- SHELL-02-T03 / SHELL-04-T06: Right section — bell, toggle, avatar -->
     <div class="top-bar__right">
-      <!-- Notification bell (placeholder; full component built in Sprint 2 COMP-06) -->
-      <button class="top-bar__icon-btn" aria-label="Notifications">
-        <div class="bell-wrapper">
-          <Bell :size="20" />
-          <span
-            v-if="notificationStore.unreadCount > 0"
-            class="bell-badge"
-          >
-            {{ notificationStore.unreadCount > 9 ? '9+' : notificationStore.unreadCount }}
-          </span>
-        </div>
-      </button>
+      <!-- COMP-06: Full NotificationBell component (Sprint 2) -->
+      <NotificationBell />
 
       <!-- SHELL-04-T06: ThemeToggle in top bar right -->
       <ThemeToggle />
@@ -92,48 +80,6 @@ const notificationStore = useNotificationStore()
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-.top-bar__icon-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  border: none;
-  background: transparent;
-  color: var(--color-text-secondary);
-  cursor: pointer;
-  transition: color 120ms ease, background-color 120ms ease;
-}
-
-.top-bar__icon-btn:hover {
-  background-color: rgba(0, 149, 169, 0.08);
-  color: var(--color-text-primary);
-}
-
-.bell-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.bell-badge {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  min-width: 16px;
-  height: 16px;
-  background-color: #ea6852;
-  color: #ffffff;
-  font-size: 10px;
-  font-weight: 700;
-  line-height: 16px;
-  text-align: center;
-  border-radius: 8px;
-  padding: 0 3px;
 }
 
 .top-bar__user {
