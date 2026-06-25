@@ -105,15 +105,14 @@ const columns = [
     </div>
 
     <!-- SHIP-01-T03/T04: Charts row (60/40) -->
+    <div class="region-filter-row">
+      <label class="region-filter-label" for="region-select">Region</label>
+      <select id="region-select" v-model="selectedRegion" class="region-select">
+        <option v-for="r in REGIONS" :key="r" :value="r">{{ r }}</option>
+      </select>
+    </div>
     <div class="two-col-row">
       <div class="col-60">
-        <!-- Region filter + Volume chart -->
-        <div class="region-filter-row">
-          <label class="region-filter-label" for="region-select">Region</label>
-          <select id="region-select" v-model="selectedRegion" class="region-select">
-            <option v-for="r in REGIONS" :key="r" :value="r">{{ r }}</option>
-          </select>
-        </div>
         <ShipmentVolumeChart />
       </div>
       <div class="col-40">
@@ -161,6 +160,7 @@ const columns = [
 .two-col-row {
   display: grid;
   grid-template-columns: 3fr 2fr;
+  align-items: start;
   gap: 16px;
   margin-bottom: 24px;
 }
@@ -173,6 +173,7 @@ const columns = [
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-bottom: 10px;
 }
 
 .region-filter-label {

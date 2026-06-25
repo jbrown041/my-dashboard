@@ -9,6 +9,7 @@ import { GridComponent, TooltipComponent, LegendComponent } from 'echarts/compon
 import { CanvasRenderer } from 'echarts/renderers'
 import { useTimeRangeStore } from '../../stores/timeRange'
 import { fetchCarrierOnTimeRate } from '../../services/api'
+import { useChartColors } from '../../composables/useChartColors'
 
 use([LineChart, GridComponent, TooltipComponent, LegendComponent, CanvasRenderer])
 
@@ -16,6 +17,7 @@ use([LineChart, GridComponent, TooltipComponent, LegendComponent, CanvasRenderer
 const LINE_COLORS = ['#0095a9', '#011e41', '#d4860b', '#2e7d5e', '#6b7280']
 
 const timeRangeStore = useTimeRangeStore()
+const { gridLineColor, axisLabelColor, tooltipBg, tooltipBorder, tooltipTextColor } = useChartColors()
 const loading = ref(true)
 const error = ref(false)
 const chartData = ref(null)
@@ -47,10 +49,10 @@ const option = computed(() => {
     grid: { left: 40, right: 16, top: 16, bottom: 56, containLabel: true },
     tooltip: {
       trigger: 'axis',
-      backgroundColor: 'var(--color-surface)',
-      borderColor: 'var(--color-border)',
+      backgroundColor: tooltipBg.value,
+      borderColor: gridLineColor.value,
       borderWidth: 1,
-      textStyle: { color: 'var(--color-text-primary)', fontSize: 12 },
+      textStyle: { color: tooltipTextColor.value, fontSize: 12 },
       formatter: (params) => {
         const header = `<b>${params[0].name}</b><br/>`
         return header + params.map((p) => `${p.marker} ${p.seriesName}: <b>${p.value}%</b>`).join('<br/>')
@@ -59,7 +61,7 @@ const option = computed(() => {
     // CARR-01-T06: Interactive legend (click to show/hide)
     legend: {
       bottom: 0,
-      textStyle: { color: 'var(--color-text-secondary)', fontSize: 12 },
+      textStyle: { color: axisLabelColor.value, fontSize: 12 },
       icon: 'circle',
       itemWidth: 10,
       itemHeight: 10,
@@ -68,16 +70,16 @@ const option = computed(() => {
     xAxis: {
       type: 'category',
       data: labels,
-      axisLine: { lineStyle: { color: 'var(--color-border)' } },
+      axisLine: { lineStyle: { color: gridLineColor.value } },
       axisTick: { show: false },
-      axisLabel: { color: 'var(--color-text-secondary)', fontSize: 12 },
+      axisLabel: { color: axisLabelColor.value, fontSize: 12 },
     },
     yAxis: {
       type: 'value',
       min: 75,
       max: 100,
-      splitLine: { lineStyle: { color: 'var(--color-border)', opacity: 0.5 } },
-      axisLabel: { color: 'var(--color-text-secondary)', fontSize: 12, formatter: '{value}%' },
+      splitLine: { lineStyle: { color: gridLineColor.value, opacity: 0.5 } },
+      axisLabel: { color: axisLabelColor.value, fontSize: 12, formatter: '{value}%' },
     },
     series: carrierNames.map((name, i) => ({
       name,

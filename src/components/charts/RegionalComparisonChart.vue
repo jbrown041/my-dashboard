@@ -8,9 +8,11 @@ import { BarChart } from 'echarts/charts'
 import { GridComponent, TooltipComponent, LegendComponent } from 'echarts/components'
 import { CanvasRenderer } from 'echarts/renderers'
 import { fetchRegional } from '../../services/api'
+import { useChartColors } from '../../composables/useChartColors'
 
 use([BarChart, GridComponent, TooltipComponent, LegendComponent, CanvasRenderer])
 
+const { gridLineColor, axisLabelColor, tooltipBg, tooltipBorder, tooltipTextColor } = useChartColors()
 const loading = ref(true)
 const error = ref(false)
 const regions = ref([])
@@ -36,14 +38,14 @@ const option = computed(() => {
     tooltip: {
       trigger: 'axis',
       axisPointer: { type: 'shadow' },
-      backgroundColor: 'var(--color-surface)',
-      borderColor: 'var(--color-border)',
+      backgroundColor: tooltipBg.value,
+      borderColor: gridLineColor.value,
       borderWidth: 1,
-      textStyle: { color: 'var(--color-text-primary)', fontSize: 12 },
+      textStyle: { color: tooltipTextColor.value, fontSize: 12 },
     },
     legend: {
       bottom: 0,
-      textStyle: { color: 'var(--color-text-secondary)', fontSize: 12 },
+      textStyle: { color: axisLabelColor.value, fontSize: 12 },
       icon: 'circle',
       itemWidth: 10,
       itemHeight: 10,
@@ -51,23 +53,23 @@ const option = computed(() => {
     xAxis: {
       type: 'category',
       data: names,
-      axisLine: { lineStyle: { color: 'var(--color-border)' } },
+      axisLine: { lineStyle: { color: gridLineColor.value } },
       axisTick: { show: false },
-      axisLabel: { color: 'var(--color-text-secondary)', fontSize: 11 },
+      axisLabel: { color: axisLabelColor.value, fontSize: 11 },
     },
     yAxis: [
       {
         type: 'value',
         name: 'On-Time %',
         min: 70, max: 100,
-        splitLine: { lineStyle: { color: 'var(--color-border)', opacity: 0.5 } },
-        axisLabel: { color: 'var(--color-text-secondary)', fontSize: 11, formatter: '{value}%' },
+        splitLine: { lineStyle: { color: gridLineColor.value, opacity: 0.5 } },
+        axisLabel: { color: axisLabelColor.value, fontSize: 11, formatter: '{value}%' },
       },
       {
         type: 'value',
         name: 'Volume',
         splitLine: { show: false },
-        axisLabel: { color: 'var(--color-text-secondary)', fontSize: 11 },
+        axisLabel: { color: axisLabelColor.value, fontSize: 11 },
       },
     ],
     series: [

@@ -14,12 +14,14 @@ import {
 import { CanvasRenderer } from 'echarts/renderers'
 import { useTimeRangeStore } from '../../stores/timeRange'
 import { fetchCarrierOnTimeRate } from '../../services/api'
+import { useChartColors } from '../../composables/useChartColors'
 
 use([LineChart, GridComponent, TooltipComponent, LegendComponent, MarkLineComponent, CanvasRenderer])
 
 const TARGET_THRESHOLD = 90 // 90% on-time rate target
 
 const timeRangeStore = useTimeRangeStore()
+const { gridLineColor, axisLabelColor, tooltipBg, tooltipBorder, tooltipTextColor } = useChartColors()
 const loading = ref(true)
 const error = ref(false)
 const chartData = ref(null)
@@ -60,10 +62,10 @@ const option = computed(() => {
     grid: { left: 40, right: 16, top: 16, bottom: 40, containLabel: true },
     tooltip: {
       trigger: 'axis',
-      backgroundColor: 'var(--color-surface)',
-      borderColor: 'var(--color-border)',
+      backgroundColor: tooltipBg.value,
+      borderColor: gridLineColor.value,
       borderWidth: 1,
-      textStyle: { color: 'var(--color-text-primary)', fontSize: 12 },
+      textStyle: { color: tooltipTextColor.value, fontSize: 12 },
       formatter: (params) => {
         const p = params[0]
         return `${p.name}<br/><b>${p.value}%</b>`
@@ -71,7 +73,7 @@ const option = computed(() => {
     },
     legend: {
       bottom: 0,
-      textStyle: { color: 'var(--color-text-secondary)', fontSize: 12 },
+      textStyle: { color: axisLabelColor.value, fontSize: 12 },
       icon: 'circle',
       itemWidth: 10,
       itemHeight: 10,
@@ -79,17 +81,17 @@ const option = computed(() => {
     xAxis: {
       type: 'category',
       data: chartData.value.labels,
-      axisLine: { lineStyle: { color: 'var(--color-border)' } },
+      axisLine: { lineStyle: { color: gridLineColor.value } },
       axisTick: { show: false },
-      axisLabel: { color: 'var(--color-text-secondary)', fontSize: 12 },
+      axisLabel: { color: axisLabelColor.value, fontSize: 12 },
     },
     yAxis: {
       type: 'value',
       min: 75,
       max: 100,
-      splitLine: { lineStyle: { color: 'var(--color-border)', opacity: 0.5 } },
+      splitLine: { lineStyle: { color: gridLineColor.value, opacity: 0.5 } },
       axisLabel: {
-        color: 'var(--color-text-secondary)',
+        color: axisLabelColor.value,
         fontSize: 12,
         formatter: '{value}%',
       },

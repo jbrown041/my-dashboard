@@ -8,9 +8,11 @@ import { BarChart } from 'echarts/charts'
 import { GridComponent, TooltipComponent } from 'echarts/components'
 import { CanvasRenderer } from 'echarts/renderers'
 import { fetchRegional } from '../../services/api'
+import { useChartColors } from '../../composables/useChartColors'
 
 use([BarChart, GridComponent, TooltipComponent, CanvasRenderer])
 
+const { gridLineColor, axisLabelColor, tooltipBg, tooltipBorder, tooltipTextColor } = useChartColors()
 const loading = ref(true)
 const error = ref(false)
 const chartData = ref(null)
@@ -41,24 +43,24 @@ const option = computed(() => {
     tooltip: {
       trigger: 'axis',
       axisPointer: { type: 'shadow' },
-      backgroundColor: 'var(--color-surface)',
-      borderColor: 'var(--color-border)',
+      backgroundColor: tooltipBg.value,
+      borderColor: gridLineColor.value,
       borderWidth: 1,
-      textStyle: { color: 'var(--color-text-primary)', fontSize: 12 },
+      textStyle: { color: tooltipTextColor.value, fontSize: 12 },
       formatter: (p) => `${p[0].name}<br/><b>${p[0].value} exceptions</b>`,
     },
     xAxis: {
       type: 'category',
       data: chartData.value.labels,
-      axisLine: { lineStyle: { color: 'var(--color-border)' } },
+      axisLine: { lineStyle: { color: gridLineColor.value } },
       axisTick: { show: false },
-      axisLabel: { color: 'var(--color-text-secondary)', fontSize: 11 },
+      axisLabel: { color: axisLabelColor.value, fontSize: 11 },
     },
     yAxis: {
       type: 'value',
       minInterval: 1,
-      splitLine: { lineStyle: { color: 'var(--color-border)', opacity: 0.5 } },
-      axisLabel: { color: 'var(--color-text-secondary)', fontSize: 11 },
+      splitLine: { lineStyle: { color: gridLineColor.value, opacity: 0.5 } },
+      axisLabel: { color: axisLabelColor.value, fontSize: 11 },
     },
     series: [
       {
