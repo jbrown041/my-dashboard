@@ -261,4 +261,20 @@ function barWidth(val, total) {
   text-align: right;
   flex-shrink: 0;
 }
+
+@media (max-width: 768px) {
+  .cards-row {
+    flex-wrap: wrap;
+  }
+  .cards-row > * {
+    flex: 1 1 calc(50% - 8px);
+    min-width: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards-row > * {
+    flex: 1 1 100%;
+  }
+}
 </style>

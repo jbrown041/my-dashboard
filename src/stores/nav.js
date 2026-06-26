@@ -7,5 +7,8 @@ export const useNavStore = defineStore('nav', () => {
   function toggle() {
     isCollapsed.value = !isCollapsed.value
   }
-  return { isCollapsed, toggle }
+  function setCollapsed(val) {
+    isCollapsed.value = val
+  }
+  return { isCollapsed, toggle, setCollapsed }
 })

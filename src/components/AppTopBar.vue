@@ -96,4 +96,17 @@ const authStore = useAuthStore()
   color: var(--color-text-primary);
   white-space: nowrap;
 }
+
+@media (max-width: 600px) {
+  .top-bar__left {
+    width: auto;
+    min-width: 60px;
+  }
+  .top-bar__username {
+    display: none;
+  }
+  .top-bar__right {
+    padding-right: 12px;
+  }
+}
 </style>

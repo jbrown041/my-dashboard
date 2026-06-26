@@ -177,7 +177,7 @@ const skeletonRows = computed(() =>
 .data-table-wrapper {
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  overflow: hidden;
+  overflow-x: auto;
   background-color: var(--color-surface);
 }
 

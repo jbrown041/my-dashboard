@@ -10,7 +10,7 @@ import {
 import PageHeader from '../components/PageHeader.vue'
 import TimeRangeFilter from '../components/TimeRangeFilter.vue'
 import ExportButton from '../components/ExportButton.vue'
-import KpiCard from '../components/KpiCard.vue'
+import MetricCard from '../components/MetricCard.vue'
 import ShipmentVolumeChart from '../components/charts/ShipmentVolumeChart.vue'
 import OnTimeRateChart from '../components/charts/OnTimeRateChart.vue'
 import RegionalSnapshotWidget from '../components/widgets/RegionalSnapshotWidget.vue'
@@ -91,14 +91,14 @@ function formatRate(v) { return `${v}%` }
 
       <!-- COMP-02-T05: Cards update when time range changes -->
       <template v-else-if="kpiData">
-        <KpiCard
+        <MetricCard
           label="Total Shipments"
           :value="kpiData.totalShipments.value"
           :delta="kpiData.totalShipments.delta"
           :delta-direction="kpiData.totalShipments.deltaDirection"
           :icon="Package"
         />
-        <KpiCard
+        <MetricCard
           label="On-Time Delivery Rate"
           :value="kpiData.onTimeRate.value"
           :delta="kpiData.onTimeRate.delta"
@@ -106,14 +106,14 @@ function formatRate(v) { return `${v}%` }
           :icon="CheckCircle"
           :format-value="formatRate"
         />
-        <KpiCard
+        <MetricCard
           label="Active Carriers"
           :value="kpiData.activeCarriers.value"
           :delta="kpiData.activeCarriers.delta"
           :delta-direction="kpiData.activeCarriers.deltaDirection"
           :icon="Truck"
         />
-        <KpiCard
+        <MetricCard
           label="Open Exceptions"
           :value="kpiData.openExceptions.value"
           :delta="kpiData.openExceptions.delta"
@@ -182,6 +182,24 @@ function formatRate(v) { return `${v}%` }
 
 .col-60,
 .col-40 {
-  min-width: 0; /* prevent overflow in grid */
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .kpi-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .two-col-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .kpi-row {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

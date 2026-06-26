@@ -77,4 +77,19 @@ defineProps({
   border: none;
   border-top: 1px solid var(--color-border);
 }
+
+@media (max-width: 640px) {
+  .page-header__top {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .page-header__title {
+    font-size: 22px;
+    line-height: 28px;
+  }
+  .page-header__actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
 </style>

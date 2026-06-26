@@ -18,10 +18,21 @@ import AppSideNav from './AppSideNav.vue'
 </template>
 
 <style scoped>
-/* SHELL-01-T03/T04: 32px padding, max 1440px centered */
 .page-content {
   max-width: 1440px;
   margin: 0 auto;
   padding: 32px;
+}
+
+@media (max-width: 1024px) {
+  .page-content {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-content {
+    padding: 16px;
+  }
 }
 </style>

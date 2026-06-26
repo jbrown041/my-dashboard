@@ -238,4 +238,10 @@ function closeDrawer() {
   color: var(--color-text-primary);
   text-align: right;
 }
+
+@media (max-width: 900px) {
+  .two-col-row {
+    grid-template-columns: 1fr;
+  }
+}
 </style>

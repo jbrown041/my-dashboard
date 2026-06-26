@@ -1,11 +1,11 @@
 <script setup>
 // SHIP-01 — Shipments Page (US-03, US-04, FR-S01 through FR-S05)
 import { ref, computed, watch, onMounted } from 'vue'
-import { Package } from 'lucide-vue-next'
+import { Package, CheckCircle, Truck, AlertTriangle } from 'lucide-vue-next'
 import PageHeader from '../components/PageHeader.vue'
 import TimeRangeFilter from '../components/TimeRangeFilter.vue'
 import ExportButton from '../components/ExportButton.vue'
-import KpiCard from '../components/KpiCard.vue'
+import MetricCard from '../components/MetricCard.vue'
 import DataTable from '../components/DataTable.vue'
 import ShipmentVolumeChart from '../components/charts/ShipmentVolumeChart.vue'
 import ShipmentsByStatusChart from '../components/charts/ShipmentsByStatusChart.vue'
@@ -52,6 +52,9 @@ onMounted(async () => {
 const REGIONS = ['All Regions', 'Northeast', 'Southeast', 'Midwest', 'Southwest', 'West']
 const selectedRegion = ref('All Regions')
 
+// Format on-time rate as percentage
+const formatRate = (v) => `${v}%`
+
 // Table filters by carrier/origin region (approximated by name-matching cities)
 const filteredShipments = computed(() => {
   if (selectedRegion.value === 'All Regions') return allShipments.value
@@ -91,26 +94,45 @@ const columns = [
       </template>
     </PageHeader>
 
-    <!-- SHIP-01-T02: Total Shipments KPI card (FR-S01) -->
-    <div class="kpi-strip">
-      <div v-if="kpiLoading" class="kpi-skeleton" />
-      <KpiCard
-        v-else-if="kpiData"
-        label="Total Shipments"
-        :value="kpiData.totalShipments.value"
-        :delta="kpiData.totalShipments.delta"
-        :delta-direction="kpiData.totalShipments.deltaDirection"
-        :icon="Package"
-      />
+    <!-- KPI strip: 4 cards -->
+    <div class="kpi-row" aria-label="Shipment key performance indicators">
+      <template v-if="kpiLoading">
+        <div v-for="i in 4" :key="i" class="kpi-skeleton" />
+      </template>
+      <template v-else-if="kpiData">
+        <MetricCard
+          label="Total Shipments"
+          :value="kpiData.totalShipments.value"
+          :delta="kpiData.totalShipments.delta"
+          :delta-direction="kpiData.totalShipments.deltaDirection"
+          :icon="Package"
+        />
+        <MetricCard
+          label="On-Time Delivery Rate"
+          :value="kpiData.onTimeRate.value"
+          :delta="kpiData.onTimeRate.delta"
+          :delta-direction="kpiData.onTimeRate.deltaDirection"
+          :icon="CheckCircle"
+          :format-value="formatRate"
+        />
+        <MetricCard
+          label="Active Carriers"
+          :value="kpiData.activeCarriers.value"
+          :delta="kpiData.activeCarriers.delta"
+          :delta-direction="kpiData.activeCarriers.deltaDirection"
+          :icon="Truck"
+        />
+        <MetricCard
+          label="Open Exceptions"
+          :value="kpiData.openExceptions.value"
+          :delta="kpiData.openExceptions.delta"
+          :delta-direction="kpiData.openExceptions.deltaDirection"
+          :icon="AlertTriangle"
+        />
+      </template>
     </div>
 
-    <!-- SHIP-01-T03/T04: Charts row (60/40) -->
-    <div class="region-filter-row">
-      <label class="region-filter-label" for="region-select">Region</label>
-      <select id="region-select" v-model="selectedRegion" class="region-select">
-        <option v-for="r in REGIONS" :key="r" :value="r">{{ r }}</option>
-      </select>
-    </div>
+    <!-- Charts row (60/40) -->
     <div class="two-col-row">
       <div class="col-60">
         <ShipmentVolumeChart />
@@ -120,13 +142,22 @@ const columns = [
       </div>
     </div>
 
-    <!-- SHIP-01-T05: Volume by region (full width) -->
+    <!-- Volume by region (full width) -->
     <div class="full-row">
       <VolumeByRegionChart />
     </div>
 
-    <!-- SHIP-01-T06: Shipments data table (full width, FR-S05) -->
+    <!-- Shipments table with inline region filter -->
     <div class="full-row">
+      <div class="table-toolbar">
+        <span class="table-toolbar__title">Shipment Records</span>
+        <div class="table-toolbar__filter">
+          <label class="region-filter-label" for="region-select">Region</label>
+          <select id="region-select" v-model="selectedRegion" class="region-select">
+            <option v-for="r in REGIONS" :key="r" :value="r">{{ r }}</option>
+          </select>
+        </div>
+      </div>
       <DataTable
         :columns="columns"
         :rows="filteredShipments"
@@ -138,16 +169,23 @@ const columns = [
 </template>
 
 <style scoped>
-.kpi-strip {
+/* 4-card KPI row */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
   margin-bottom: 24px;
-  max-width: 280px;
 }
 
 .kpi-skeleton {
   min-height: 120px;
-  max-width: 280px;
   border-radius: 8px;
-  background: linear-gradient(90deg, var(--color-border) 25%, rgba(255,255,255,0.12) 50%, var(--color-border) 75%);
+  background: linear-gradient(
+    90deg,
+    var(--color-border) 25%,
+    rgba(255, 255, 255, 0.12) 50%,
+    var(--color-border) 75%
+  );
   background-size: 200% 100%;
   animation: shimmer 1.4s infinite;
 }
@@ -169,11 +207,24 @@ const columns = [
 
 .full-row { margin-bottom: 24px; }
 
-.region-filter-row {
+/* Table toolbar with inline region filter */
+.table-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.table-toolbar__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.table-toolbar__filter {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 10px;
 }
 
 .region-filter-label {
@@ -197,5 +248,28 @@ const columns = [
 
 .region-select:focus {
   border-color: #0095a9;
+}
+
+@media (max-width: 900px) {
+  .kpi-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .two-col-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .kpi-row {
+    grid-template-columns: 1fr;
+  }
+  .table-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
 }
 </style>

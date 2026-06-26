@@ -1,5 +1,6 @@
 <script setup>
 // SHELL-03 — Side Navigation using v-navigation-drawer (FR-G08, Design Doc §4.3)
+import { onMounted, onBeforeUnmount } from 'vue'
 import { useNavStore } from '../stores/nav'
 import {
   LayoutDashboard,
@@ -12,6 +13,19 @@ import {
 } from 'lucide-vue-next'
 
 const navStore = useNavStore()
+
+// Auto-collapse nav on small screens
+const COLLAPSE_BREAKPOINT = 1024
+function handleResize() {
+  navStore.setCollapsed(window.innerWidth < COLLAPSE_BREAKPOINT)
+}
+onMounted(() => {
+  handleResize()
+  window.addEventListener('resize', handleResize)
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', handleResize)
+})
 
 // SHELL-03-T01: All 5 nav items (Design Doc §4.3)
 const navItems = [
@@ -43,13 +57,12 @@ const navItems = [
       <span class="nav-logo-text">FF Logistics</span>
     </div>
 
-    <!-- SHELL-03-T01/T04: Nav items — v-list-item hides title in rail mode automatically -->
+    <!-- SHELL-03-T01/T04: Nav items — label rendered manually so nothing shows in rail mode -->
     <v-list nav :lines="false" density="compact" class="nav-list">
       <v-list-item
         v-for="item in navItems"
         :key="item.to"
         :to="item.to"
-        :title="item.label"
         :value="item.to"
         active-color="#0095a9"
         rounded="0"
@@ -57,8 +70,10 @@ const navItems = [
         :aria-label="item.label"
       >
         <template #prepend>
-          <component :is="item.icon" :size="20" class="nav-icon" />
+          <component :is="item.icon" :size="20" class="nav-icon"
+            :style="{ marginRight: navStore.isCollapsed ? '0' : '12px' }" />
         </template>
+        <span v-if="!navStore.isCollapsed" class="nav-label">{{ item.label }}</span>
       </v-list-item>
     </v-list>
 
@@ -113,10 +128,24 @@ const navItems = [
   background-color: rgba(0, 149, 169, 0.12) !important;
 }
 
-/* Icon spacing */
+/* Rail mode: hide title text — show icon only */
+:deep(.v-navigation-drawer--rail .v-list-item-title),
+:deep(.v-navigation-drawer--rail .v-list-item__content) {
+  display: none !important;
+}
+
+/* Nav label text */
+.nav-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Icon spacing — gap between icon and label text */
 .nav-icon {
   flex-shrink: 0;
-  margin-right: 0;
 }
 
 /* Circular edge toggle button */
