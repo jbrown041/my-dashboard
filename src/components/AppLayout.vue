@@ -5,52 +5,23 @@ import AppSideNav from './AppSideNav.vue'
 </script>
 
 <template>
-  <!-- SHELL-01-T01: Fixed top bar + fixed side nav + scrollable main content slot -->
-  <div class="app-shell">
-    <!-- SHELL-01-T02: Top bar 64px fixed -->
+  <!-- v-app registers the Vuetify layout context; v-main auto-offsets for app-bar + drawer -->
+  <v-app :style="{ backgroundColor: 'var(--color-bg)' }">
     <AppTopBar />
-
-    <!-- SHELL-01-T02: Side nav 240px fixed -->
     <AppSideNav />
-
-    <!-- SHELL-01-T01 / T04: Scrollable main content area with 32px padding -->
-    <main class="main-content">
-      <!-- SHELL-01-T03: Max content width 1440px centered -->
-      <div class="main-content__inner">
+    <v-main :style="{ backgroundColor: 'var(--color-bg)' }">
+      <div class="page-content">
         <slot />
       </div>
-    </main>
-  </div>
+    </v-main>
+  </v-app>
 </template>
 
 <style scoped>
-.app-shell {
-  min-height: 100vh;
-  background-color: var(--color-bg);
-}
-
-/* SHELL-01-T02 / T05: Main content offset — top bar 64px, side nav 240px */
-.main-content {
-  margin-left: 240px;
-  margin-top: 64px;
-  min-height: calc(100vh - 64px);
-  overflow-y: auto;
-  /* SHELL-01-T04: 32px padding all sides */
-  padding: 32px;
-  /* QA-04-T07: Smooth margin transition matching nav collapse */
-  transition: margin-left 200ms ease;
-}
-
-/* QA-04-T07: Reduced margin when nav collapses to icon-only */
-@media (max-width: 1279px) {
-  .main-content {
-    margin-left: 60px;
-  }
-}
-
-/* SHELL-01-T03: Max 1440px, centered */
-.main-content__inner {
+/* SHELL-01-T03/T04: 32px padding, max 1440px centered */
+.page-content {
   max-width: 1440px;
   margin: 0 auto;
+  padding: 32px;
 }
 </style>

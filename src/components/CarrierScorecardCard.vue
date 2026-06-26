@@ -64,7 +64,8 @@ defineProps({
   flex-direction: column;
   gap: 10px;
   transition: box-shadow 150ms ease, transform 150ms ease;
-  min-width: 200px;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .scorecard:hover {
@@ -117,14 +118,16 @@ defineProps({
 .scorecard__trend--down { color: #ea6852; }
 
 .scorecard__metrics {
-  display: flex;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
 }
 
 .scorecard__metric {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  min-width: 0;
 }
 
 .scorecard__metric-val {
@@ -134,10 +137,11 @@ defineProps({
 }
 
 .scorecard__metric-label {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--color-text-secondary);
+  line-height: 1.3;
 }
 </style>

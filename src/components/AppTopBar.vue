@@ -1,19 +1,24 @@
 <script setup>
-// SHELL-02 — Top Bar (Design Doc §4.2)
+// SHELL-02 — Top Bar using v-app-bar (Design Doc §4.2)
 import ThemeToggle from './ThemeToggle.vue'
 import NotificationBell from './NotificationBell.vue'
 import { useAuthStore } from '../stores/auth'
 
-// SHELL-02-T03: User data from useAuthStore (FR-G02)
 const authStore = useAuthStore()
 </script>
 
 <template>
-  <!-- SHELL-02-T01: AppTopBar component (Design Doc §4.2) -->
-  <header class="top-bar">
-    <!-- SHELL-02-T02: Logo/wordmark left -->
+  <!-- v-app-bar registers with Vuetify layout; v-main auto-offsets its top padding -->
+  <v-app-bar
+    elevation="0"
+    :height="64"
+    :style="{
+      backgroundColor: 'var(--color-surface)',
+      borderBottom: '1px solid var(--color-border)',
+    }"
+  >
+    <!-- Logo/wordmark — fixed 240px left area -->
     <div class="top-bar__left">
-      <!-- SVG wordmark placeholder -->
       <svg
         width="160"
         height="28"
@@ -23,24 +28,19 @@ const authStore = useAuthStore()
         aria-label="FastForward Logistics"
         role="img"
       >
-        <!-- Teal accent arrow mark -->
         <path d="M4 14 L14 6 L14 11 L20 11 L20 17 L14 17 L14 22 Z" fill="#0095a9" />
-        <!-- Wordmark text rendered as path placeholder — will be replaced with final SVG -->
         <text x="28" y="19" font-family="Open Sans, sans-serif" font-size="13" font-weight="700" fill="var(--color-text-primary)">
           FastForward Logistics
         </text>
       </svg>
     </div>
 
-    <!-- SHELL-02-T03 / SHELL-04-T06: Right section — bell, toggle, avatar -->
+    <v-spacer />
+
+    <!-- Right section — bell, theme toggle, user avatar -->
     <div class="top-bar__right">
-      <!-- COMP-06: Full NotificationBell component (Sprint 2) -->
       <NotificationBell />
-
-      <!-- SHELL-04-T06: ThemeToggle in top bar right -->
       <ThemeToggle />
-
-      <!-- SHELL-02-T03: User avatar + display name -->
       <div class="top-bar__user">
         <div class="top-bar__avatar" aria-hidden="true">
           {{ authStore.user.name.charAt(0) }}
@@ -48,26 +48,10 @@ const authStore = useAuthStore()
         <span class="top-bar__username">{{ authStore.user.name }}</span>
       </div>
     </div>
-  </header>
+  </v-app-bar>
 </template>
 
 <style scoped>
-/* SHELL-02-T04: Top bar height, background, border-bottom per design tokens */
-.top-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 64px;
-  background-color: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px 0 0;
-  z-index: 50;
-}
-
 .top-bar__left {
   width: 240px;
   padding: 0 20px;
@@ -80,6 +64,7 @@ const authStore = useAuthStore()
   display: flex;
   align-items: center;
   gap: 8px;
+  padding-right: 24px;
 }
 
 .top-bar__user {
