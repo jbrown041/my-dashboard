@@ -62,6 +62,7 @@ const emit = defineEmits(['close'])
 .drawer-backdrop {
   position: fixed;
   inset: 0;
+  top: 64px;
   background-color: rgba(1, 30, 65, 0.3);
   z-index: 60;
 }
@@ -69,10 +70,10 @@ const emit = defineEmits(['close'])
 /* COMP-04-T01: Drawer panel (Design Doc §5.5) */
 .drawer {
   position: fixed;
-  top: 0;
+  top: 64px;
   right: 0;
   width: 480px;
-  height: 100vh;
+  height: calc(100vh - 64px);
   background-color: var(--color-surface);
   border-left: 1px solid var(--color-border);
   box-shadow: 0 8px 24px rgba(1, 30, 65, 0.12);
