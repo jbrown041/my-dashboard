@@ -20,9 +20,9 @@ const authStore = useAuthStore()
     <!-- Logo/wordmark — fixed 240px left area -->
     <div class="top-bar__left">
       <svg
-        width="160"
+        width="200"
         height="28"
-        viewBox="0 0 160 28"
+        viewBox="0 0 200 28"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-label="FastForward Logistics"
